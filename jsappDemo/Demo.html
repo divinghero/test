@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html>
+    <head>
+        <title>Demo</title>
+        <style type="text/css">
+            * {
+                font-size: 40px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        
+        <div style="margin-top: 100px">
+            <div><input type="button" value="获取APP信息" onclick="callGetAPPInfo()"></div><br/>
+            <div><input type="button" value="获取登录用户信息" onclick="callGetUserInfo()"></div><br/>
+            <div><input type="button" value="登录" onclick="callLogin()"></div><br/>
+            <div><input type="button" value="分享" onclick="callShare()"></div><br/>
+            <div><input type="button" value="设置右上角菜单" onclick="callSetTopRightMenu()"></div><br/>
+        </div>
+
+        
+        <script src="Hera.js"> </script>
+        <script>
+            
+            var hera = new Hera()
+            
+            function callGetAPPInfo() {
+                hera.getAPPInfo(function callBack(respData){
+                                 alert(respData)
+                                 })
+            }
+        
+            function callGetUserInfo() {
+                hera.getUserInfo(function callBack(respData){
+                                 alert(respData)
+                                 })
+            }
+        
+            function callLogin() {
+                hera.callUpLoginPage(function callBack(respData){
+                                 alert(respData)
+                                 })
+            }
+        
+            function callShare() {
+                hera.share('JS分享标题',
+                           'JS分享内容',
+                           'http://www.deskcar.com/desktop/fengjing/2013812103350/11.jpg',
+                           'https://www.baidu.com/index.php?tn=monline_5_dg')
+            }
+        
+            function callSetTopRightMenu() {
+                var menuItems = new Array(hera.topRightMenuItem('邀请好友','userClickMenuIndex(0)'),
+                                          hera.topRightMenuItem('复制链接','userClickMenuIndex(1)'),
+                                          hera.topRightMenuItem('关于我们','userClickMenuIndex(2)'),
+                                          hera.topRightMenuItem('更多','userClickMenuIndex(3)'))
+                hera.setupTopRightMenuItems(menuItems)
+            }
+            function userClickMenuIndex(index){
+                alert('用户点击了：'+index)
+            }
+        
+        
+        </script>
+    </body>
+</html>
+
+
+
+
